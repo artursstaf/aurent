@@ -6,7 +6,7 @@ class Car(models.Model):
     name = models.CharField(max_length=10)
     reg_number = models.CharField(max_length=6)
     type = models.CharField(max_length=10)
-    year = models.IntegerField(max_length=4)
+    year = models.IntegerField()
 
 
 class User(models.Model):
