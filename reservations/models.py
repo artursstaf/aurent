@@ -11,6 +11,9 @@ class Car(models.Model):
     type = models.CharField(max_length=40, verbose_name="Type")
     year = models.IntegerField(verbose_name="Release year")
 
+    def __str__(self):
+        return "{0} | Brand: {1} | name: {2}".format(self.reg_number, self.brand, self.name)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="User")
@@ -18,6 +21,9 @@ class Profile(models.Model):
     surname = models.CharField(max_length=40, verbose_name="Surname")
     phone = models.CharField(max_length=8, verbose_name="Phone", blank=True, null=True)
     email = models.EmailField(verbose_name="Email", blank=True, null=True)
+
+    def __str__(self):
+        return "{0}  {1}".format(self.name, self.surname)
 
 
 @receiver(post_save, sender=User)
@@ -33,14 +39,20 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Registration(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
-    user = models.ForeignKey(User, on_delete=models.CASCADE,verbose_name="User")
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE,verbose_name="User")
     start_time = models.DateTimeField(verbose_name="Start time")
     end_time = models.DateTimeField(verbose_name="End time")
-    notes = models.CharField(max_length=500, verbose_name="Note")
+    notes = models.CharField(max_length=500, verbose_name="Note", blank=True)
+
+    def __str__(self):
+        return "Person: {0}, car: {1},Time from: {2}, Time until: {3}".format(self.user, self.car, self.start_time,  self.end_time)
 
 
 class CarCommentary(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="User")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
     comment = models.CharField(max_length=500)
     date = models.DateTimeField(verbose_name="Commentary date")
+
+    def __str__(self):
+        return "Person: {0}, car: {1}, Comment: {2}".format(self.user, self.car, self.comment)

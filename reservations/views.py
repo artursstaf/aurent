@@ -21,3 +21,11 @@ def show_subscriptions(request):
 
 def profile(request):
     return HttpResponse('<h3>Profile</h3>')
+
+
+def delete_registration(request, pk=0):
+    return HttpResponse('<h3>Delete registration</h3>')
+
+
+def update_registration(request, pk=0):
+    return HttpResponse('<h3>Update registration</h3>')

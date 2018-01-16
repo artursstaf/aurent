@@ -5,8 +5,8 @@
   <h3 class = ".panel-title" >Registrations</h3>
     <div class="list-group">
     {% for registration in all_registrations %}
-        <a href="{% url 'manage_leases:lease-update' registration.id %}" class="list-group-item">{{ registration.user.name }} {{ registration.user.surname }} |
-        {{ registration.car.brand }} {{ registration.car.type }} | From:
+        <a href="{% url 'reservations:update-registration' registration.id %}" class="list-group-item">{{ registration.user.name }} {{ registration.user.surname }} |
+        {{ registration.car.brand }} {{ registration.car.name }} | From:
             {{ registration.start_time.astimezone }} | To:
              {{ registration.end_time.astimezone }}
 
