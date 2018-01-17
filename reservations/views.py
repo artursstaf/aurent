@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from reservations.models import Registration, Car, Profile
-from .forms import RegistrationCreateForm
+from .forms import RegistrationCreateForm, RegistrationUpdateForm
 import datetime, json
 import pytz
 from django.contrib import messages
@@ -16,9 +16,11 @@ import datetime
 
 utc = pytz.UTC
 
+
 @login_required(login_url='login')
 def show_registrations(request):
-    all_registrations = Registration.objects.filter(user=request.user).filter(end_time__gte=timezone.now()).order_by('start_time')
+    all_registrations = Registration.objects.filter(user=request.user).filter(end_time__gte=timezone.now()).order_by(
+        'start_time')
     context = {'all_registrations': all_registrations}
 
     return render(request, 'reservations/view_registrations.html', context)
@@ -34,7 +36,6 @@ def profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     return render(request, 'reservations/profile.html', {'user': user, 'profile': profile})
-
 
 
 def car_view(request):
@@ -88,7 +89,9 @@ class RegistrationCreate(CreateView):
     form_class = RegistrationCreateForm
 
     def get_initial(self):
-        return {'car': self.kwargs['car'], 'user': self.request.user.pk}
+        end_date = utc.localize(datetime.datetime.strptime(self.kwargs['end_date'],"%d-%m-%Y"))
+        start_date = utc.localize(datetime.datetime.strptime(self.kwargs['start_date'], "%d-%m-%Y"))
+        return {'car': self.kwargs['car'], 'user': self.request.user.pk, 'start_time': start_date, 'end_time': end_date}
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -101,5 +104,5 @@ class RegistrationDelete(DeleteView):
 class RegistrationUpdate(UpdateView):
     template_name = 'reservations/update_add_form_group.html'
     model = Registration
-    fields = ['user', 'car', 'start_time', 'end_time', 'notes']
+    form_class = RegistrationUpdateForm
     success_url = reverse_lazy('reservations:view-registrations')
