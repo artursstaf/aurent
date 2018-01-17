@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
-from reservations.models import Registration, Car, Profile
+from reservations.models import Registration, Car, Profile, CarCommentary
 from .forms import RegistrationCreateForm
 import datetime, json
 import pytz
@@ -40,9 +40,11 @@ def profile(request):
 def car_view(request):
     data = Car.objects.all()
     available_cars = []
-    registrations = Registration.objects.all()
     start_date = utc.localize(datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y"))
     end_date = utc.localize(datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y"))
+    if end_date < start_date:
+        return JsonResponse(json.dumps(list(available_cars)), safe=False)
+    registrations = Registration.objects.all()
     not_available_cars = []
     for reg in registrations:
         if ((reg.start_time >= start_date and reg.start_time <= end_date)
@@ -102,4 +104,12 @@ class RegistrationUpdate(UpdateView):
     template_name = 'reservations/update_add_form_group.html'
     model = Registration
     fields = ['user', 'car', 'start_time', 'end_time', 'notes']
+    success_url = reverse_lazy('reservations:view-registrations')
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class TechnicalUpdate(CreateView):
+    model = CarCommentary
+    fields = ['user', 'car', 'comment', 'date']
+    template_name = 'reservations/technical_update.html'
     success_url = reverse_lazy('reservations:view-registrations')
