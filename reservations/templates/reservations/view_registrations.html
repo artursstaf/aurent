@@ -5,10 +5,10 @@
   <h3 class = ".panel-title" >Profile Information</h3>
     <div class="list-group">
     {% for registration in all_registrations %}
-        <a href="{% url 'reservations:update-registration' registration.id %}" class="list-group-item">{{ registration.user.name }} {{ registration.user.surname }} |
-        {{ registration.car.brand }} {{ registration.car.name }} | From:
-            {{ registration.start_time.astimezone }} | To:
-             {{ registration.end_time.astimezone }}
+        <a href="{% url 'reservations:update-registration' registration.id %}" class="list-group-item">
+        {{ registration.car.brand }} {{ registration.car.name }}  {{ registration.car.year }} {{ registration.car.type }} {{ registration.car.reg_number }}| From:
+            {{ registration.start_time.day }}/{{ registration.start_time.month }}/{{ registration.start_time.year }}| To:
+             {{ registration.end_time.day }}/{{ registration.end_time.month }}/{{ registration.end_time.year }}
 
         <form action="{% url 'reservations:delete-registration' registration.id %}" method = "post" style="display:inline-block;">
                 {% csrf_token %}

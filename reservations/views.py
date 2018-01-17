@@ -11,14 +11,16 @@ from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
+from django.utils import timezone
 import datetime
 
 utc = pytz.UTC
 
 @login_required(login_url='login')
 def show_registrations(request):
-    all_registrations = Registration.objects.all().order_by('start_time')
+    all_registrations = Registration.objects.filter(user=request.user).filter(end_time__gte=timezone.now()).order_by('start_time')
     context = {'all_registrations': all_registrations}
+
     return render(request, 'reservations/view_registrations.html', context)
 
 
@@ -32,6 +34,7 @@ def profile(request):
     user = request.user
     profile = Profile.objects.get(user=user)
     return render(request, 'reservations/profile.html', {'user': user, 'profile': profile})
+
 
 
 def car_view(request):
@@ -51,6 +54,7 @@ def car_view(request):
             available_cars.append(car.as_json())
     car_list = list(available_cars)
     return JsonResponse(json.dumps(car_list), safe=False)
+
 
 @login_required(login_url='login')
 def change_password(request):
@@ -84,7 +88,7 @@ class RegistrationCreate(CreateView):
     form_class = RegistrationCreateForm
 
     def get_initial(self):
-        return {'car': Car.objects.get(id=self.kwargs['car']), 'user': self.request.user}
+        return {'car': self.kwargs['car'], 'user': self.request.user.pk}
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
