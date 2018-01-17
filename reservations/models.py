@@ -14,6 +14,14 @@ class Car(models.Model):
     def __str__(self):
         return "{0} | Brand: {1} | name: {2}".format(self.reg_number, self.brand, self.name)
 
+    def as_json(self):
+        return dict(
+        brand=self.brand,
+        name = self.name,
+        reg_number = self.reg_number,
+        type = self.type,
+        year = self.year)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="User")
@@ -39,7 +47,7 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Registration(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE,verbose_name="User")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     start_time = models.DateTimeField(verbose_name="Start time")
     end_time = models.DateTimeField(verbose_name="End time")
     notes = models.CharField(max_length=500, verbose_name="Note", blank=True)
@@ -49,7 +57,7 @@ class Registration(models.Model):
 
 
 class CarCommentary(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="User")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
     comment = models.CharField(max_length=500)
     date = models.DateTimeField(verbose_name="Commentary date")
