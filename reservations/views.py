@@ -34,7 +34,6 @@ def profile(request):
     return render(request, 'reservations/profile.html', {'user': user, 'profile': profile})
 
 
-@login_required(login_url='login')
 def car_view(request):
     data = Car.objects.all()
     available_cars = []
