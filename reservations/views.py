@@ -4,8 +4,10 @@ from django.urls import reverse_lazy
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from reservations.models import Registration, Car
 from .forms import RegistrationCreateForm
-import datetime
+import datetime, json
+import pytz
 
+utc = pytz.UTC
 
 def show_registrations(request):
     all_registrations = Registration.objects.all().order_by('start_time')
@@ -25,8 +27,8 @@ def car_view(request):
     data = Car.objects.all()
     available_cars = []
     registrations = Registration.objects.all()
-    start_date = datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y")
-    end_date = datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y")
+    start_date = utc.localize(datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y"))
+    end_date = utc.localize(datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y"))
     not_available_cars = []
     for reg in registrations:
         if ((reg.start_time >= start_date and reg.start_time <= end_date)
@@ -35,8 +37,9 @@ def car_view(request):
             not_available_cars.append(reg.car_id)
     for car in data:
         if car.id not in not_available_cars:
-            available_cars.append(car)
-    return JsonResponse(available_cars, safe=False)
+            available_cars.append(car.as_json())
+    car_list = list(available_cars)
+    return JsonResponse(json.dumps(car_list), safe=False)
 
 
 class CarsList(ListView):

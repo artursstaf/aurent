@@ -2,41 +2,41 @@
 {% block body %}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-    $( function() {
-        $( "#start_date" ).datepicker({ dateFormat: 'dd-mm-yy' }).datepicker('setDate', 'today');
-        $( "#end_date" ).datepicker({ dateFormat: 'dd-mm-yy' }).datepicker('setDate', 'today');
-    } );
-    function process_reservation() {
-        var car_list = "{{object_list}}";
-        var url = 'http://localhost:8000/registrations/test?start_date=' + document.getElementById("start_date").value + '&end_date=' + document.getElementById("end_date").value;
-        $.get(url, function(available_cars, status){
-            alert("Data: " + available_cars + "\nStatus: " + status);
+    <script>
+        $(function () {
+            $("#start_date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', 'today');
+            $("#end_date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', 'today');
         });
-        console.log(car_list);
-        for (var i = 0, len = car_list.length; i < len; i++) {
-            var x = document.createElement("p");
-            x.innerHTML = car_list[i];
-            document.getElementById("car_list").appendChild(x);
-        }
-    }
-</script>
-<div class="row">
-  <div class="col-md-6">
-  <h3 class = ".panel-title" >Free cars</h3>
-  <label for="start_date">Start date:</label>
-  <p>Date: <input type="text" id="start_date"></p>
-  <label for="end_date">End date:</label>
-  <p>Date: <input type="text" id="end_date"></p>
-  <button type="button" onclick="process_reservation()">Search</button>
 
-    <div class="list-group" id="car_list"> <!-- -->
-{#    {% for car in object_list %}#}
-{#        <a href="{% url 'reservations:create-registrations' car.pk%}" class="list-group-item">{{ car.brand }} {{ car.name }} |#}
-{#        {{ car.type }}</a>#}
-{#    {% endfor %}#}
+        function process_reservation() {
+
+            var url = 'http://localhost:8000/registrations/test?start_date=' + document.getElementById("start_date").value + '&end_date=' + document.getElementById("end_date").value;
+            $.get(url, function (cars, status) {
+                var car_list = JSON.parse(cars);
+                for (var i = 0, len = car_list.length; i < len; i++) {
+                    var x = document.createElement("p");
+                    x.innerHTML = car_list[i].brand + " " + car_list[i].name;
+                    document.getElementById("car_list").appendChild(x);
+                }
+            });
+        }
+    </script>
+    <div class="row">
+        <div class="col-md-6">
+            <h3 class=".panel-title">Free cars</h3>
+            <label for="start_date">Start date:</label>
+            <p>Date: <input type="text" id="start_date"></p>
+            <label for="end_date">End date:</label>
+            <p>Date: <input type="text" id="end_date"></p>
+            <button type="button" onclick="process_reservation()">Search</button>
+
+            <div class="list-group" id="car_list"> <!-- -->
+                {#    {% for car in object_list %}#}
+                {#        <a href="{% url 'reservations:create-registrations' car.pk%}" class="list-group-item">{{ car.brand }} {{ car.name }} |#}
+                {#        {{ car.type }}</a>#}
+                {#    {% endfor %}#}
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 {% endblock %}
 
