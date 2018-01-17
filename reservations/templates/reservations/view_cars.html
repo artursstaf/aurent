@@ -13,9 +13,13 @@
             var url = 'http://localhost:8000/registrations/test?start_date=' + document.getElementById("start_date").value + '&end_date=' + document.getElementById("end_date").value;
             $.get(url, function (cars, status) {
                 var car_list = JSON.parse(cars);
+                var myNode = document.getElementById("car_list");
+                while (myNode.firstChild) {
+                    myNode.removeChild(myNode.firstChild);
+                }
                 for (var i = 0, len = car_list.length; i < len; i++) {
                     var x = document.createElement("p");
-                    x.innerHTML = car_list[i].brand + " " + car_list[i].name;
+                    x.innerHTML = "<a href=\"" + "create/" + car_list[i].id +"\" class=\"list-group-item\">" + car_list[i].brand + " " + car_list[i].name + " " + car_list[i].year + " " + car_list[i].type + " " + car_list[i].reg_number + "</a>";
                     document.getElementById("car_list").appendChild(x);
                 }
             });
@@ -29,12 +33,13 @@
             <label for="end_date">End date:</label>
             <p>Date: <input type="text" id="end_date"></p>
             <button type="button" onclick="process_reservation()">Search</button>
-
+            <br>
+            <br>
             <div class="list-group" id="car_list"> <!-- -->
-                {#    {% for car in object_list %}#}
+
                 {#        <a href="{% url 'reservations:create-registrations' car.pk%}" class="list-group-item">{{ car.brand }} {{ car.name }} |#}
                 {#        {{ car.type }}</a>#}
-                {#    {% endfor %}#}
+
             </div>
         </div>
     </div>

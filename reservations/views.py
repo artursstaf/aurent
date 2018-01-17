@@ -84,7 +84,7 @@ class RegistrationCreate(CreateView):
     form_class = RegistrationCreateForm
 
     def get_initial(self):
-        return {'car': Car.objects.all(), 'user': self.request.user}
+        return {'car': Car.objects.get(id=self.kwargs['car']), 'user': self.request.user}
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')

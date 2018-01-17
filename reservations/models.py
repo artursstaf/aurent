@@ -12,15 +12,16 @@ class Car(models.Model):
     year = models.IntegerField(verbose_name="Release year")
 
     def __str__(self):
-        return "{0} | Brand: {1} | name: {2}".format(self.reg_number, self.brand, self.name)
+        return "{0} {1} {2} {3} {4}".format(self.brand, self.name, self.year, self.type, self.reg_number)
 
     def as_json(self):
         return dict(
-        brand=self.brand,
-        name = self.name,
-        reg_number = self.reg_number,
-        type = self.type,
-        year = self.year)
+            id=self.id,
+            brand=self.brand,
+            name=self.name,
+            reg_number=self.reg_number,
+            type=self.type,
+            year=self.year)
 
 
 class Profile(models.Model):
@@ -53,7 +54,8 @@ class Registration(models.Model):
     notes = models.CharField(max_length=500, verbose_name="Note", blank=True)
 
     def __str__(self):
-        return "Person: {0}, car: {1},Time from: {2}, Time until: {3}".format(self.user, self.car, self.start_time,  self.end_time)
+        return "Person: {0}, car: {1},Time from: {2}, Time until: {3}".format(self.user, self.car, self.start_time,
+                                                                              self.end_time)
 
 
 class CarCommentary(models.Model):
