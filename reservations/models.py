@@ -40,8 +40,8 @@ def save_user_profile(sender, instance, **kwargs):
 class Registration(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
-    start_time = models.DateField(verbose_name="Start time")
-    end_time = models.DateField(verbose_name="End time")
+    start_time = models.DateTimeField(verbose_name="Start time")
+    end_time = models.DateTimeField(verbose_name="End time")
     notes = models.CharField(max_length=500, verbose_name="Note", blank=True)
 
     def __str__(self):
