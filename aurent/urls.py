@@ -18,12 +18,14 @@ from django.urls import include, re_path
 from django.contrib.auth.views import login
 from django.contrib.auth.views import logout
 from reservations.forms import LoginForm
+from reservations.views import change_password
 
 
 
 urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^registrations/', include('reservations.urls')),
-    re_path(r'^logout/$', logout, {'next_page': 'login'}),
+    re_path(r'^logout/$', logout, {'next_page': 'login'}, name='logout'),
     re_path(r'^login/$', login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
+    re_path(r'^password/$', change_password, name='change_password'),
 ]

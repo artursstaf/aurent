@@ -1,0 +1,13 @@
+{% extends 'reservations/base.html' %}
+{% block body %}
+    <div class="container">
+        <h3 class=".panel-title">Profile Information</h3>
+        <br>
+        <ul class="list-group">
+            <li class="list-group-item"><b>Name:</b> {{ profile.name }} </li>
+            <li class="list-group-item"><b>Surname:</b> {{ profile.surname }} </li>
+            <li class="list-group-item"><b>Phone:</b> {{ profile.phone }} </li>
+            <li class="list-group-item"><b>e-mail:</b> {{ profile.email }} </li>
+        </ul>
+    </div>
+{% endblock %}
