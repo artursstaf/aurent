@@ -5,12 +5,15 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from reservations.models import Registration, Car, Profile
 from .forms import RegistrationCreateForm
+import datetime, json
+import pytz
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 import datetime
 
+utc = pytz.UTC
 
 @login_required(login_url='login')
 def show_registrations(request):
@@ -36,8 +39,8 @@ def car_view(request):
     data = Car.objects.all()
     available_cars = []
     registrations = Registration.objects.all()
-    start_date = datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y")
-    end_date = datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y")
+    start_date = utc.localize(datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y"))
+    end_date = utc.localize(datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y"))
     not_available_cars = []
     for reg in registrations:
         if ((reg.start_time >= start_date and reg.start_time <= end_date)
@@ -46,8 +49,9 @@ def car_view(request):
             not_available_cars.append(reg.car_id)
     for car in data:
         if car.id not in not_available_cars:
-            available_cars.append(car)
-    return JsonResponse(available_cars, safe=False)
+            available_cars.append(car.as_json())
+    car_list = list(available_cars)
+    return JsonResponse(json.dumps(car_list), safe=False)
 
 @login_required(login_url='login')
 def change_password(request):

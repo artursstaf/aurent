@@ -14,6 +14,14 @@ class Car(models.Model):
     def __str__(self):
         return "{0} | Brand: {1} | name: {2}".format(self.reg_number, self.brand, self.name)
 
+    def as_json(self):
+        return dict(
+        brand=self.brand,
+        name = self.name,
+        reg_number = self.reg_number,
+        type = self.type,
+        year = self.year)
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="User")
