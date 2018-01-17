@@ -39,9 +39,9 @@ def save_user_profile(sender, instance, **kwargs):
 
 class Registration(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE,verbose_name="User")
-    start_time = models.DateTimeField(verbose_name="Start time")
-    end_time = models.DateTimeField(verbose_name="End time")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
+    start_time = models.DateField(verbose_name="Start time")
+    end_time = models.DateField(verbose_name="End time")
     notes = models.CharField(max_length=500, verbose_name="Note", blank=True)
 
     def __str__(self):
@@ -49,7 +49,7 @@ class Registration(models.Model):
 
 
 class CarCommentary(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name="User")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
     comment = models.CharField(max_length=500)
     date = models.DateTimeField(verbose_name="Commentary date")

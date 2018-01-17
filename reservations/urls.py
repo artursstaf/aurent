@@ -1,4 +1,4 @@
-from django.urls import re_path
+from django.urls import re_path, path
 from . import views
 
 app_name = 'reservations'
@@ -8,7 +8,7 @@ urlpatterns = [
     re_path(r'^subscriptions$', views.show_subscriptions, name='subscriptions'),
     re_path(r'^profile', views.profile, name='profile'),
     re_path(r'^cars', views.CarsList.as_view(), name='all-cars'),
-
+    re_path(r'^test$', views.car_view, name='test-cars'),
 
     re_path(r'^create/(?P<car>[0-9]+)$', views.RegistrationCreate.as_view(), name='create-registrations'),
     re_path(r'^registration/(?P<pk>[0-9]+)/delete$', views.RegistrationDelete.as_view(), name='delete-registration'),
