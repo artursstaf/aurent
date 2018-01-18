@@ -1,8 +1,11 @@
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
+from post_office import mail
+from aurent import settings
 from reservations.models import Registration, Car, Profile, Subscription
 from .forms import RegistrationCreateForm, RegistrationUpdateForm
 from reservations.models import Registration, Car, Profile, CarCommentary
@@ -58,11 +61,9 @@ def create_subscription(request, car):
 @login_required(login_url='login')
 def delete_subscription(request, car):
     subs = Subscription.objects.filter(user_id=request.user.id, car_id=car)
-    if(subs.count() > 0):
+    if (subs.count() > 0):
         subs.delete()
     return redirect(reverse_lazy('reservations:subscriptions'))
-
-
 
 
 @login_required(login_url='login')
@@ -128,6 +129,27 @@ class RegistrationCreate(CreateView):
         end_date = utc.localize(datetime.datetime.strptime(self.kwargs['end_date'], "%d-%m-%Y"))
         start_date = utc.localize(datetime.datetime.strptime(self.kwargs['start_date'], "%d-%m-%Y"))
         return {'car': self.kwargs['car'], 'user': self.request.user.pk, 'start_time': start_date, 'end_time': end_date}
+
+    def form_valid(self, form):
+        self.object = form.save()
+        all_subs = Subscription.objects.all()
+        car = Car.objects.get(pk=self.kwargs['car'])
+        subbed_users = []
+        for sub in all_subs:
+            if car == sub.car:
+                subbed_users.append(sub.user)
+        subbed_emails = []
+        for usr in subbed_users:
+            subbed_emails.append(Profile.objects.get(user=usr).email)
+
+        send_mail(
+            'Aurent automatic subscribtion message',
+            'Car: ' + car.__str__() + ' was reserved from ' + self.kwargs['start_date'] + ' to ' + self.kwargs['end_date'],
+            settings.EMAIL_HOST_USER,
+            subbed_emails,
+            fail_silently=True,
+        )
+        return HttpResponseRedirect(self.get_success_url())
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
