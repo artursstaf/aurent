@@ -7,7 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 class RegistrationCreateForm(forms.ModelForm):
     user = forms.ModelChoiceField(queryset=User.objects.all(), disabled=True)
     car = forms.ModelChoiceField(queryset=Car.objects.all(), disabled=True)
-    notes = forms.CharField(widget=forms.Textarea(attrs={'size': 20}))
+    notes = forms.CharField(widget=forms.Textarea(attrs={'size': 20}), required=False)
     start_time = forms.DateField(widget=SelectDateWidget, disabled=True)
     end_time = forms.DateField(widget=SelectDateWidget, disabled=True)
 
@@ -21,7 +21,7 @@ class TechnicalForm(forms.ModelForm):
     user = forms.ModelChoiceField(queryset=User.objects.all(), disabled=True)
     car = forms.ModelChoiceField(queryset=Car.objects.all(), disabled=True)
     date = forms.DateField(widget=SelectDateWidget, disabled=True)
-    photo = forms.FileField()
+    photo = forms.FileField(required=False)
 
     class Meta:
         model = CarCommentary
@@ -39,7 +39,7 @@ class LoginForm(AuthenticationForm):
 class RegistrationUpdateForm(forms.ModelForm):
     user = forms.ModelChoiceField(queryset=User.objects.all(), disabled=True)
     car = forms.ModelChoiceField(queryset=Car.objects.all(), disabled=True)
-    notes = forms.CharField(widget=forms.Textarea(attrs={'size': 20}))
+    notes = forms.CharField(widget=forms.Textarea(attrs={'size': 20}), required=False)
     start_time = forms.DateField(widget=SelectDateWidget,disabled=True)
     end_time = forms.DateField(widget=SelectDateWidget,disabled=True)
 
