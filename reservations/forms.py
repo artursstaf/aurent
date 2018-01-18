@@ -6,11 +6,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.utils.translation import ugettext_lazy as _
 
 class RegistrationCreateForm(forms.ModelForm):
-    user = forms.ModelChoiceField(queryset=User.objects.all(), disabled=True)
-    car = forms.ModelChoiceField(queryset=Car.objects.all(), disabled=True)
-    notes = forms.CharField(widget=forms.Textarea(attrs={'size': 20}))
-    start_time = forms.DateField(widget=SelectDateWidget, disabled=True)
-    end_time = forms.DateField(widget=SelectDateWidget, disabled=True)
+    user = forms.ModelChoiceField(label=_("User"), queryset=User.objects.all(), disabled=True)
+    car = forms.ModelChoiceField(label=_("Car"), queryset=Car.objects.all(), disabled=True)
+    notes = forms.CharField(label=_("Notes"), widget=forms.Textarea(attrs={'size': 20}))
+    start_time = forms.DateField(label=_("Start date"), widget=SelectDateWidget, disabled=True)
+    end_time = forms.DateField(label=_("End date"), widget=SelectDateWidget, disabled=True)
 
     class Meta:
         model = Registration
@@ -37,11 +37,11 @@ class LoginForm(AuthenticationForm):
 
 
 class RegistrationUpdateForm(forms.ModelForm):
-    user = forms.ModelChoiceField(queryset=User.objects.all(), disabled=True)
-    car = forms.ModelChoiceField(queryset=Car.objects.all(), disabled=True)
-    notes = forms.CharField(widget=forms.Textarea(attrs={'size': 20}))
-    start_time = forms.DateField(widget=SelectDateWidget,disabled=True)
-    end_time = forms.DateField(widget=SelectDateWidget,disabled=True)
+    user = forms.ModelChoiceField(label=_("User"), queryset=User.objects.all(), disabled=True)
+    car = forms.ModelChoiceField(label=_("Car"), queryset=Car.objects.all(), disabled=True)
+    notes = forms.CharField(label=_("Notes"), widget=forms.Textarea(attrs={'size': 20}))
+    start_time = forms.DateField(label=_("Start date"), widget=SelectDateWidget,disabled=True)
+    end_time = forms.DateField(label=_("End date"), widget=SelectDateWidget,disabled=True)
 
     class Meta:
         model = Registration
