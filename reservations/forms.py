@@ -21,11 +21,11 @@ class TechnicalForm(forms.ModelForm):
     user = forms.ModelChoiceField(queryset=User.objects.all(), disabled=True)
     car = forms.ModelChoiceField(queryset=Car.objects.all(), disabled=True)
     date = forms.DateField(widget=SelectDateWidget, disabled=True)
-
+    photo = forms.FileField()
 
     class Meta:
         model = CarCommentary
-        fields = ['user','car', 'date', 'comment']
+        fields = ['user','car', 'date', 'comment', 'photo']
 
 
 class LoginForm(AuthenticationForm):
