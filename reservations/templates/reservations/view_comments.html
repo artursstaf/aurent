@@ -1,0 +1,27 @@
+{% extends 'reservations/base.html' %}
+{% load i18n %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if comments.first %}
+                <h3 class=".panel-title">Car
+                    - {{ comments.first.car.brand }} {{ comments.first.car.name }} {{ comments.first.car.year }} {{ comments.first.car.type }} {{ comments.first.car.reg_number }}</h3>
+                <div class="list-group">
+                    {% for comment in comments %}
+                        <div class="list-group-item">
+                            <p>{{ comment.date.day }}/{{ comment.date.month }}/{{ comment.date.year }}</p>
+                            <p>{{ comment.user.profile.name }} {{ comment.user.profile.surname }}</p>
+                            <p>{{ comment.comment }}</p>
+                            {% if comment.photo %}
+                                <img style="width:100%; max-width:450px;" src="{{ comment.photo.url }}"
+                                     alt="Describing image">
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3 class=".panel-title">No comments</h3>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

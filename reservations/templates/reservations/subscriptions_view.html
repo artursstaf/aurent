@@ -8,6 +8,14 @@
                 {% for car in free_cars %}
                     <a href="" class="list-group-item">
                         {{ car.brand }} {{ car.name }} {{ car.year }} {{ car.type }} {{ car.reg_number }}
+                        <form action="{% url 'reservations:view-comments' car.id %}" method="post"
+                              style="display:inline-block;">
+                            {% csrf_token %}
+                            <input type="hidden" name="user" value="{{ car.id }}"/>
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </button>
+                        </form>
 
                         <form action="{% url 'reservations:create-subscriptions' car.id %}" method="post"
                               style="display:inline-block;">
@@ -27,6 +35,14 @@
                 {% for car in subscribed_cars %}
                     <a href="" class="list-group-item">
                         {{ car.brand }} {{ car.name }} {{ car.year }} {{ car.type }} {{ car.reg_number }}
+                        <form action="{% url 'reservations:view-comments' car.id %}" method="post"
+                              style="display:inline-block;">
+                            {% csrf_token %}
+                            <input type="hidden" name="user" value="{{ car.id }}"/>
+                            <button type="submit" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-list-alt"></span>
+                            </button>
+                        </form>
                         <form action="{% url 'reservations:delete-subscriptions' car.id %}" method="post"
                               style="display:inline-block;">
                             {% csrf_token %}

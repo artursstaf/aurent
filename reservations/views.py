@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse
+from django.core.mail import send_mail
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
@@ -59,10 +60,16 @@ def create_subscription(request, car):
 @login_required(login_url='login')
 def delete_subscription(request, car):
     subs = Subscription.objects.filter(user_id=request.user.id, car_id=car)
-    if (subs.count() > 0):
+    if subs.count() > 0:
         subs.delete()
     return redirect(reverse_lazy('reservations:subscriptions'))
 
+@login_required(login_url='login')
+def view_comments(request, car):
+    car_model = Car.objects.get(pk=car)
+    comments = CarCommentary.objects.filter(car=car_model).order_by('date')
+
+    return render(request, 'reservations/view_comments.html', {'comments': comments})
 
 @login_required(login_url='login')
 def profile(request):
@@ -89,7 +96,7 @@ def car_view(request):
         if car.id not in not_available_cars:
             available_cars.append(car.as_json())
     car_list = list(available_cars)
-    return JsonResponse(json.dumps(car_list), safe=False)
+    return JsonResponse(car_list, safe=False)
 
 
 @login_required(login_url='login')
