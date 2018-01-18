@@ -1,0 +1,124 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-01-18 14:56+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
+"2);\n"
+
+#: .\aurent\settings.py:131
+msgid "Latvian"
+msgstr ""
+
+#: .\aurent\settings.py:131
+msgid "English"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:15
+msgid "Registrations"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:16
+msgid "New registration"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:17
+#: .\reservations\templates\reservations\subscriptions_view.html:4
+msgid "Subscriptions"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:19
+msgid "Account"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:24
+msgid "Information"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:27
+msgid "Change password"
+msgstr ""
+
+#: .\reservations\templates\reservations\base.html:31
+msgid "Logout"
+msgstr ""
+
+#: .\reservations\templates\reservations\create_car_commentary_form.html:19
+#: .\reservations\templates\reservations\create_registration_form.html:19
+#: .\reservations\templates\reservations\technical_update.html:17
+#: .\reservations\templates\reservations\update_add_form_group.html:9
+msgid "Save"
+msgstr ""
+
+#: .\reservations\templates\reservations\profile.html:5
+#: .\reservations\templates\reservations\view_registrations.html:6
+msgid "Profile Information"
+msgstr ""
+
+#: .\reservations\templates\reservations\profile.html:8
+msgid "Name:"
+msgstr ""
+
+#: .\reservations\templates\reservations\profile.html:9
+msgid "Surname:"
+msgstr ""
+
+#: .\reservations\templates\reservations\profile.html:10
+msgid "Phone:"
+msgstr ""
+
+#: .\reservations\templates\reservations\profile.html:11
+msgid "e-mail:"
+msgstr ""
+
+#: .\reservations\templates\reservations\view_cars.html:31
+msgid "Free cars"
+msgstr ""
+
+#: .\reservations\templates\reservations\view_cars.html:32
+msgid "Start date:"
+msgstr ""
+
+#: .\reservations\templates\reservations\view_cars.html:33
+#: .\reservations\templates\reservations\view_cars.html:35
+msgid "Date:"
+msgstr ""
+
+#: .\reservations\templates\reservations\view_cars.html:34
+msgid "End date:"
+msgstr ""
+
+#: .\reservations\templates\reservations\view_cars.html:36
+msgid "Search"
+msgstr ""
+
+#: .\templates\login.html:7
+msgid "Your username and password didn't match. Please try again."
+msgstr ""
+
+#: .\templates\login.html:13
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: .\templates\login.html:16
+msgid "Please login to see this page."
+msgstr ""
+
+#: .\templates\login.html:23
+msgid "Please Sign In"
+msgstr ""
