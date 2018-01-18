@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-6">
             {% if comments.first %}
-                <h3 class=".panel-title">Car
+                <h3 class=".panel-title">{% trans "Car" %}
                     - {{ comments.first.car.brand }} {{ comments.first.car.name }} {{ comments.first.car.year }} {{ comments.first.car.type }} {{ comments.first.car.reg_number }}</h3>
                 <div class="list-group">
                     {% for comment in comments %}
@@ -20,7 +20,7 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <h3 class=".panel-title">No comments</h3>
+                <h3 class=".panel-title">{% trans "No comments" %}</h3>
             {% endif %}
         </div>
     </div>
