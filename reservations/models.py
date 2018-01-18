@@ -66,3 +66,11 @@ class CarCommentary(models.Model):
 
     def __str__(self):
         return "Person: {0}, car: {1}, Comment: {2}".format(self.user, self.car, self.comment)
+
+
+class Subscription(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
+    car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
+
+    def __str__(self):
+        return "Person: {0}, car: {1}".format(self.user, self.car)
