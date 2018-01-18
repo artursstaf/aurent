@@ -19,7 +19,7 @@
                 }
                 for (var i = 0, len = car_list.length; i < len; i++) {
                     var x = document.createElement("p");
-                    x.innerHTML = "<a href=\"" + "create/" + car_list[i].id +"\" class=\"list-group-item\">" + car_list[i].brand + " " + car_list[i].name + " " + car_list[i].year + " " + car_list[i].type + " " + car_list[i].reg_number + "</a>";
+                    x.innerHTML = "<a href=\"" + "create/" + car_list[i].id +"/" + document.getElementById("start_date").value + "/" + document.getElementById("end_date").value + "\" class=\"list-group-item\">" + car_list[i].brand + " " + car_list[i].name + " " + car_list[i].year + " " + car_list[i].type + " " + car_list[i].reg_number + "</a>";
                     document.getElementById("car_list").appendChild(x);
                 }
             });
