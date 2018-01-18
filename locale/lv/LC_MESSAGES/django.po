@@ -30,16 +30,16 @@ msgstr "Angļu"
 #: .\reservations\forms.py:9 .\reservations\forms.py:22
 #: .\reservations\forms.py:40
 msgid "User"
-msgstr ""
+msgstr "Lietotājs"
 
 #: .\reservations\forms.py:10 .\reservations\forms.py:23
 #: .\reservations\forms.py:41
 msgid "Car"
-msgstr ""
+msgstr "Mašīna"
 
 #: .\reservations\forms.py:11 .\reservations\forms.py:42
 msgid "Notes"
-msgstr ""
+msgstr "Piezīmes"
 
 #: .\reservations\forms.py:12 .\reservations\forms.py:43
 #, fuzzy
@@ -55,7 +55,7 @@ msgstr "Beigu datums:"
 
 #: .\reservations\forms.py:21
 msgid "Comment"
-msgstr ""
+msgstr "Komentārs"
 
 #: .\reservations\forms.py:24
 #, fuzzy
@@ -65,7 +65,7 @@ msgstr "Datums:"
 
 #: .\reservations\forms.py:25
 msgid "Photo"
-msgstr ""
+msgstr "Foto"
 
 #: .\reservations\forms.py:33
 #, fuzzy
@@ -143,7 +143,7 @@ msgstr "Abonētie"
 
 #: .\reservations\templates\reservations\subscriptions_view.html:24
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Atteikties"
 
 #: .\reservations\templates\reservations\view_cars.html:31
 msgid "Free cars"
