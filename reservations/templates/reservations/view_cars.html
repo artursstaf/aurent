@@ -1,4 +1,5 @@
 {% extends 'reservations/base.html' %}
+{% load i18n %}
 {% block body %}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -27,12 +28,12 @@
     </script>
     <div class="row">
         <div class="col-md-6">
-            <h3 class=".panel-title">Free cars</h3>
-            <label for="start_date">Start date:</label>
-            <p>Date: <input type="text" id="start_date"></p>
-            <label for="end_date">End date:</label>
-            <p>Date: <input type="text" id="end_date"></p>
-            <button type="button" onclick="process_reservation()">Search</button>
+            <h3 class=".panel-title">{% trans "Free cars" %}</h3>
+            <label for="start_date">{% trans "Start date:" %} </label>
+            <p>{% trans "Date:" %} <input type="text" id="start_date"></p>
+            <label for="end_date">{% trans "End date:" %} </label>
+            <p>{% trans "Date:" %} <input type="text" id="end_date"></p>
+            <button type="button" onclick="process_reservation()">{% trans "Search" %}</button>
             <br>
             <br>
             <div class="list-group" id="car_list">
