@@ -21,104 +21,104 @@ msgstr ""
 
 #: .\aurent\settings.py:131
 msgid "Latvian"
-msgstr ""
+msgstr "Latviešu"
 
 #: .\aurent\settings.py:131
 msgid "English"
-msgstr ""
+msgstr "Angļu"
 
 #: .\reservations\templates\reservations\base.html:15
 msgid "Registrations"
-msgstr ""
+msgstr "Reģistrācijas"
 
 #: .\reservations\templates\reservations\base.html:16
 msgid "New registration"
-msgstr ""
+msgstr "Jauna reģistrācija"
 
 #: .\reservations\templates\reservations\base.html:17
 #: .\reservations\templates\reservations\subscriptions_view.html:4
 msgid "Subscriptions"
-msgstr ""
+msgstr "Abonētie"
 
 #: .\reservations\templates\reservations\base.html:19
 msgid "Account"
-msgstr ""
+msgstr "Profils"
 
 #: .\reservations\templates\reservations\base.html:24
 msgid "Information"
-msgstr ""
+msgstr "Informācija"
 
 #: .\reservations\templates\reservations\base.html:27
 msgid "Change password"
-msgstr ""
+msgstr "Nomainīt paroli"
 
 #: .\reservations\templates\reservations\base.html:31
 msgid "Logout"
-msgstr ""
+msgstr "Iziet"
 
 #: .\reservations\templates\reservations\create_car_commentary_form.html:19
 #: .\reservations\templates\reservations\create_registration_form.html:19
 #: .\reservations\templates\reservations\technical_update.html:17
 #: .\reservations\templates\reservations\update_add_form_group.html:9
 msgid "Save"
-msgstr ""
+msgstr "Saglabāt"
 
 #: .\reservations\templates\reservations\profile.html:5
 #: .\reservations\templates\reservations\view_registrations.html:6
 msgid "Profile Information"
-msgstr ""
+msgstr "Profila informācija"
 
 #: .\reservations\templates\reservations\profile.html:8
 msgid "Name:"
-msgstr ""
+msgstr "Vārds:"
 
 #: .\reservations\templates\reservations\profile.html:9
 msgid "Surname:"
-msgstr ""
+msgstr "Uzvārds:"
 
 #: .\reservations\templates\reservations\profile.html:10
 msgid "Phone:"
-msgstr ""
+msgstr "Telefons:"
 
 #: .\reservations\templates\reservations\profile.html:11
 msgid "e-mail:"
-msgstr ""
+msgstr "e-pasts:"
 
 #: .\reservations\templates\reservations\view_cars.html:31
 msgid "Free cars"
-msgstr ""
+msgstr "Brīvās mašīnas"
 
 #: .\reservations\templates\reservations\view_cars.html:32
 msgid "Start date:"
-msgstr ""
+msgstr "Sākuma datums:"
 
 #: .\reservations\templates\reservations\view_cars.html:33
 #: .\reservations\templates\reservations\view_cars.html:35
 msgid "Date:"
-msgstr ""
+msgstr "Datums:"
 
 #: .\reservations\templates\reservations\view_cars.html:34
 msgid "End date:"
-msgstr ""
+msgstr "Beigu datums:"
 
 #: .\reservations\templates\reservations\view_cars.html:36
 msgid "Search"
-msgstr ""
+msgstr "Meklēt"
 
 #: .\templates\login.html:7
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Lietotājvārds un parole nesakrīt. Lūdzu mēģiniet vēlreiz."
 
 #: .\templates\login.html:13
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
-msgstr ""
+msgstr "Jums nav pieejas šaj lapai. Lai turpinātu, lūdzu autorizēties sistēmā."
 
 #: .\templates\login.html:16
 msgid "Please login to see this page."
-msgstr ""
+msgstr "Lūdzu autorizēties, lai redzētu šo lapu"
 
 #: .\templates\login.html:23
 msgid "Please Sign In"
-msgstr ""
+msgstr "Lūdzu autorizējieties"
