@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-18 14:56+0200\n"
+"POT-Creation-Date: 2018-01-18 19:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,50 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : "
 "2);\n"
 
-#: .\aurent\settings.py:131
+#: .\aurent\settings.py:137
 msgid "Latvian"
 msgstr "Latviešu"
 
-#: .\aurent\settings.py:131
+#: .\aurent\settings.py:137
 msgid "English"
 msgstr "Angļu"
 
+#: .\reservations\forms.py:21
+msgid "Comment"
+msgstr ""
+
+#: .\reservations\forms.py:22
+msgid "User"
+msgstr ""
+
+#: .\reservations\forms.py:23
+msgid "Car"
+msgstr ""
+
+#: .\reservations\forms.py:24
+#, fuzzy
+#| msgid "Date:"
+msgid "Date"
+msgstr "Datums:"
+
+#: .\reservations\forms.py:25
+msgid "Photo"
+msgstr ""
+
+#: .\reservations\forms.py:33
+#, fuzzy
+#| msgid "Surname:"
+msgid "Username"
+msgstr "Uzvārds:"
+
+#: .\reservations\forms.py:35
+#, fuzzy
+#| msgid "Change password"
+msgid "Password"
+msgstr "Nomainīt paroli"
+
 #: .\reservations\templates\reservations\base.html:15
+#: .\reservations\templates\reservations\view_registrations.html:5
 msgid "Registrations"
 msgstr "Reģistrācijas"
 
@@ -36,7 +71,6 @@ msgid "New registration"
 msgstr "Jauna reģistrācija"
 
 #: .\reservations\templates\reservations\base.html:17
-#: .\reservations\templates\reservations\subscriptions_view.html:4
 msgid "Subscriptions"
 msgstr "Abonētie"
 
@@ -64,7 +98,6 @@ msgid "Save"
 msgstr "Saglabāt"
 
 #: .\reservations\templates\reservations\profile.html:5
-#: .\reservations\templates\reservations\view_registrations.html:6
 msgid "Profile Information"
 msgstr "Profila informācija"
 
@@ -83,6 +116,16 @@ msgstr "Telefons:"
 #: .\reservations\templates\reservations\profile.html:11
 msgid "e-mail:"
 msgstr "e-pasts:"
+
+#: .\reservations\templates\reservations\subscriptions_view.html:5
+#, fuzzy
+#| msgid "Subscriptions"
+msgid "Subscribe"
+msgstr "Abonētie"
+
+#: .\reservations\templates\reservations\subscriptions_view.html:24
+msgid "Unsubscribe"
+msgstr ""
 
 #: .\reservations\templates\reservations\view_cars.html:31
 msgid "Free cars"
