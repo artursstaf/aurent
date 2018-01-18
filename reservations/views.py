@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, JsonResponse
-from django.urls import reverse_lazy
+from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
+from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
-from reservations.models import Registration, Car, Profile
+from reservations.models import Registration, Car, Profile, Subscription
 from .forms import RegistrationCreateForm, RegistrationUpdateForm
 from reservations.models import Registration, Car, Profile, CarCommentary
 from .forms import RegistrationCreateForm, TechnicalForm
@@ -30,7 +30,39 @@ def show_registrations(request):
 
 @login_required(login_url='login')
 def show_subscriptions(request):
-    return render(request, 'reservations/subscriptions_view.html', {})
+    user_subs = Subscription.objects.filter(user=request.user)
+
+    subscribed_cars = []
+    for sub in user_subs:
+        subscribed_cars.append(sub.car)
+
+    all_cars = Car.objects.all().order_by('name')
+    free_cars = []
+    for car in all_cars:
+        if car not in subscribed_cars:
+            free_cars.append(car)
+
+    return render(request, 'reservations/subscriptions_view.html',
+                  {'free_cars': free_cars, 'subscribed_cars': subscribed_cars})
+
+
+@login_required(login_url='login')
+def create_subscription(request, car):
+    if Subscription.objects.filter(user_id=request.user.id, car_id=car).count() > 0:
+        raise Http404()
+    sub = Subscription.objects.create(user_id=request.user.id, car_id=car)
+    sub.save()
+    return redirect(reverse_lazy('reservations:subscriptions'))
+
+
+@login_required(login_url='login')
+def delete_subscription(request, car):
+    subs = Subscription.objects.filter(user_id=request.user.id, car_id=car)
+    if(subs.count() > 0):
+        subs.delete()
+    return redirect(reverse_lazy('reservations:subscriptions'))
+
+
 
 
 @login_required(login_url='login')
@@ -41,7 +73,7 @@ def profile(request):
 
 
 def car_view(request):
-    data = Car.objects.all()
+    data = Car.objects.all().order_by('name')
     available_cars = []
     start_date = utc.localize(datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y"))
     end_date = utc.localize(datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y"))
@@ -93,7 +125,7 @@ class RegistrationCreate(CreateView):
     form_class = RegistrationCreateForm
 
     def get_initial(self):
-        end_date = utc.localize(datetime.datetime.strptime(self.kwargs['end_date'],"%d-%m-%Y"))
+        end_date = utc.localize(datetime.datetime.strptime(self.kwargs['end_date'], "%d-%m-%Y"))
         start_date = utc.localize(datetime.datetime.strptime(self.kwargs['start_date'], "%d-%m-%Y"))
         return {'car': self.kwargs['car'], 'user': self.request.user.pk, 'start_time': start_date, 'end_time': end_date}
 
@@ -120,5 +152,4 @@ class TechnicalUpdate(CreateView):
     success_url = reverse_lazy('reservations:view-registrations')
 
     def get_initial(self):
-
         return {'user': self.request.user.pk, 'car': self.kwargs['car'], 'date': timezone.now()}
