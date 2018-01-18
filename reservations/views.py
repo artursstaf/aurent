@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from reservations.models import Registration, Car, Profile, CarCommentary
-from .forms import RegistrationCreateForm
+from .forms import RegistrationCreateForm, TechnicalForm
 import datetime, json
 import pytz
 from django.contrib import messages
@@ -85,7 +85,7 @@ class CarsList(ListView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class RegistrationCreate(CreateView):
     model = Registration
-    template_name = 'reservations/update_add_form_group.html'
+    template_name = 'reservations/create_registration_form.html'
     success_url = reverse_lazy('reservations:view-registrations')
     form_class = RegistrationCreateForm
 
@@ -101,7 +101,7 @@ class RegistrationDelete(DeleteView):
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class RegistrationUpdate(UpdateView):
-    template_name = 'reservations/update_add_form_group.html'
+    template_name = 'reservations/create_registration_form.html'
     model = Registration
     fields = ['user', 'car', 'start_time', 'end_time', 'notes']
     success_url = reverse_lazy('reservations:view-registrations')
@@ -110,6 +110,10 @@ class RegistrationUpdate(UpdateView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class TechnicalUpdate(CreateView):
     model = CarCommentary
-    fields = ['user', 'car', 'comment', 'date']
-    template_name = 'reservations/technical_update.html'
+    form_class = TechnicalForm
+    template_name = 'reservations/create_car_commentary_form.html'
     success_url = reverse_lazy('reservations:view-registrations')
+
+    def get_initial(self):
+
+        return {'user': self.request.user.pk, 'car': self.kwargs['car'], 'date': timezone.now()}

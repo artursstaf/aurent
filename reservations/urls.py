@@ -15,5 +15,5 @@ urlpatterns = [
     re_path(r'^create/(?P<car>[0-9]+)$', views.RegistrationCreate.as_view(), name='create-registrations'),
     re_path(r'^registration/(?P<pk>[0-9]+)/delete$', views.RegistrationDelete.as_view(), name='delete-registration'),
     re_path(r'^registration/(?P<pk>[0-9]+)/update$', views.RegistrationUpdate.as_view(), name='update-registration'),
-    re_path(r'^technical_update/(?P<user>[0-9]+)$', views.TechnicalUpdate.as_view(), name='technical-update'),
+    re_path(r'^technical_update/(?P<car>[0-9]+)$', views.TechnicalUpdate.as_view(), name='technical-update'),
 ]
