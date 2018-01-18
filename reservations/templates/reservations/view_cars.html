@@ -4,8 +4,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
         $(function () {
-            $("#start_date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', 'today');
-            $("#end_date").datepicker({dateFormat: 'dd-mm-yy'}).datepicker('setDate', 'today');
+            $("#start_date").datepicker({dateFormat: 'dd-mm-yy', minDate: +1}).datepicker('setDate', 'today');
+            $("#end_date").datepicker({dateFormat: 'dd-mm-yy', minDate: +1}).datepicker('setDate', 'today');
         });
 
         function process_reservation() {
@@ -35,7 +35,7 @@
             <button type="button" onclick="process_reservation()">Search</button>
             <br>
             <br>
-            <div class="list-group" id="car_list"> <!-- -->
+            <div class="list-group" id="car_list">
 
                 {#        <a href="{% url 'reservations:create-registrations' car.pk%}" class="list-group-item">{{ car.brand }} {{ car.name }} |#}
                 {#        {{ car.type }}</a>#}

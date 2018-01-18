@@ -5,6 +5,8 @@ from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from reservations.models import Registration, Car, Profile
 from .forms import RegistrationCreateForm, RegistrationUpdateForm
+from reservations.models import Registration, Car, Profile, CarCommentary
+from .forms import RegistrationCreateForm, TechnicalForm
 import datetime, json
 import pytz
 from django.contrib import messages
@@ -41,9 +43,11 @@ def profile(request):
 def car_view(request):
     data = Car.objects.all()
     available_cars = []
-    registrations = Registration.objects.all()
     start_date = utc.localize(datetime.datetime.strptime(request.GET.get('start_date'), "%d-%m-%Y"))
     end_date = utc.localize(datetime.datetime.strptime(request.GET.get('end_date'), "%d-%m-%Y"))
+    if end_date < start_date:
+        return JsonResponse(json.dumps(list(available_cars)), safe=False)
+    registrations = Registration.objects.all()
     not_available_cars = []
     for reg in registrations:
         if ((reg.start_time >= start_date and reg.start_time <= end_date)
@@ -84,7 +88,7 @@ class CarsList(ListView):
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class RegistrationCreate(CreateView):
     model = Registration
-    template_name = 'reservations/update_add_form_group.html'
+    template_name = 'reservations/create_registration_form.html'
     success_url = reverse_lazy('reservations:view-registrations')
     form_class = RegistrationCreateForm
 
@@ -102,7 +106,19 @@ class RegistrationDelete(DeleteView):
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class RegistrationUpdate(UpdateView):
-    template_name = 'reservations/update_add_form_group.html'
+    template_name = 'reservations/create_registration_form.html'
     model = Registration
     form_class = RegistrationUpdateForm
     success_url = reverse_lazy('reservations:view-registrations')
+
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
+class TechnicalUpdate(CreateView):
+    model = CarCommentary
+    form_class = TechnicalForm
+    template_name = 'reservations/create_car_commentary_form.html'
+    success_url = reverse_lazy('reservations:view-registrations')
+
+    def get_initial(self):
+
+        return {'user': self.request.user.pk, 'car': self.kwargs['car'], 'date': timezone.now()}

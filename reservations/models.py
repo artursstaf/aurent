@@ -51,7 +51,7 @@ class Registration(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     start_time = models.DateTimeField(verbose_name="Start time")
     end_time = models.DateTimeField(verbose_name="End time")
-    notes = models.CharField(max_length=500, verbose_name="Note", blank=True)
+    notes = models.CharField(max_length=500, verbose_name="Registration note", blank=True)
 
     def __str__(self):
         return "Person: {0}, car: {1},Time from: {2}, Time until: {3}".format(self.user, self.car, self.start_time,
@@ -61,7 +61,7 @@ class Registration(models.Model):
 class CarCommentary(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="User")
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
-    comment = models.CharField(max_length=500)
+    comment = models.CharField(max_length=500, verbose_name="Car commentary")
     date = models.DateTimeField(verbose_name="Commentary date")
 
     def __str__(self):
