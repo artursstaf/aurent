@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-18 19:40+0200\n"
+"POT-Creation-Date: 2018-01-18 19:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,16 +27,34 @@ msgstr "Latviešu"
 msgid "English"
 msgstr "Angļu"
 
-#: .\reservations\forms.py:21
-msgid "Comment"
-msgstr ""
-
-#: .\reservations\forms.py:22
+#: .\reservations\forms.py:9 .\reservations\forms.py:22
+#: .\reservations\forms.py:40
 msgid "User"
 msgstr ""
 
-#: .\reservations\forms.py:23
+#: .\reservations\forms.py:10 .\reservations\forms.py:23
+#: .\reservations\forms.py:41
 msgid "Car"
+msgstr ""
+
+#: .\reservations\forms.py:11 .\reservations\forms.py:42
+msgid "Notes"
+msgstr ""
+
+#: .\reservations\forms.py:12 .\reservations\forms.py:43
+#, fuzzy
+#| msgid "Start date:"
+msgid "Start date"
+msgstr "Sākuma datums:"
+
+#: .\reservations\forms.py:13 .\reservations\forms.py:44
+#, fuzzy
+#| msgid "End date:"
+msgid "End date"
+msgstr "Beigu datums:"
+
+#: .\reservations\forms.py:21
+msgid "Comment"
 msgstr ""
 
 #: .\reservations\forms.py:24
