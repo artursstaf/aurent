@@ -63,6 +63,7 @@ class CarCommentary(models.Model):
     car = models.ForeignKey(Car, on_delete=models.CASCADE, verbose_name="Car")
     comment = models.CharField(max_length=500, verbose_name="Car commentary")
     date = models.DateTimeField(verbose_name="Commentary date")
+    photo = models.FileField(blank=True, null=True, verbose_name="Photo")
 
     def __str__(self):
         return "Person: {0}, car: {1}, Comment: {2}".format(self.user, self.car, self.comment)
