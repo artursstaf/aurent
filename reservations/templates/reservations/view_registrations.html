@@ -1,33 +1,48 @@
 {% extends 'reservations/base.html' %}
 {% load i18n %}
 {% block body %}
-<div class="row">
-  <div class="col-md-6">
-  <h3 class = ".panel-title" >{% trans "Registrations" %}</h3>
-    <div class="list-group">
-    {% for registration in all_registrations %}
-        <a href="{% url 'reservations:update-registration' registration.id %}" class="list-group-item">
-        {{ registration.car.brand }} {{ registration.car.name }}  {{ registration.car.year }} {{ registration.car.type }} {{ registration.car.reg_number }}| From:
-            {{ registration.start_time.day }}/{{ registration.start_time.month }}/{{ registration.start_time.year }}| To:
-             {{ registration.end_time.day }}/{{ registration.end_time.month }}/{{ registration.end_time.year }}
-
-        <form action="{% url 'reservations:delete-registration' registration.id %}" method = "post" style="display:inline-block;">
-                {% csrf_token %}
-                <input type="hidden" name="registration_id" value="{{ registration.id }}"/>
-                <button type="submit" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-trash"></span>
-                </button>
-                </form>
-        <form action="{% url 'reservations:technical-update' registration.car.id %}" method = "post" style="display:inline-block;">
-                {% csrf_token %}
-                <input type="hidden" name="user" value="{{ registration.user_id }}"/>
-                <button type="submit" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-wrench"></span>
-                </button>
-                </form>
-        </a>
-    {% endfor %}
+    <div class="row">
+        <div class="col-md-6">
+            {% if all_registrations.first %}
+                <h3 class=".panel-title">{% trans "Registrations" %}</h3>
+                <div class="list-group">
+                    {% for registration in all_registrations %}
+                        <a href="{% url 'reservations:update-registration' registration.id %}" class="list-group-item">
+                            {{ registration.car.brand }} {{ registration.car.name }} {{ registration.car.year }} {{ registration.car.type }} {{ registration.car.reg_number }}|
+                            From:
+                            {{ registration.start_time.day }}/{{ registration.start_time.month }}/{{ registration.start_time.year }}|
+                            To:
+                            {{ registration.end_time.day }}/{{ registration.end_time.month }}/{{ registration.end_time.year }}
+                            <form action="{% url 'reservations:view-comments' registration.car.id %}" method="post"
+                                  style="display:inline-block;">
+                                {% csrf_token %}
+                                <input type="hidden" name="user" value="{{ registration.car.id }}"/>
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-list-alt"></span>
+                                </button>
+                            </form>
+                            <form action="{% url 'reservations:technical-update' registration.car.id %}" method="post"
+                                  style="display:inline-block;">
+                                {% csrf_token %}
+                                <input type="hidden" name="user" value="{{ registration.car.id }}"/>
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-wrench"></span>
+                                </button>
+                            </form>
+                            <form action="{% url 'reservations:delete-registration' registration.id %}" method="post"
+                                  style="display:inline-block;">
+                                {% csrf_token %}
+                                <input type="hidden" name="registration_id" value="{{ registration.id }}"/>
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </form>
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h3 class=".panel-title">{% trans "No registrations" %}</h3>
+            {% endif %}
+        </div>
     </div>
-  </div>
-</div>
 {% endblock %}

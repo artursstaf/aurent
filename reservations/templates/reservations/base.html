@@ -16,7 +16,8 @@
             <li><a href="{% url 'reservations:all-cars' %}">{% trans "New registration" %}</a></li>
             <li><a href="{% url 'reservations:subscriptions' %}">{% trans "Subscriptions" %}</a></li>
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{% trans "Account" %}
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                   aria-expanded="false">{% trans "Account" %}
                     <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu" role="menu">
@@ -31,6 +32,8 @@
                         <a href="/logout">{% trans "Logout" %}</a>
                     </li>
                 </ul>
+            <li><a href="/lv/registrations">LV</a></li>
+            <li><a href="/en/registrations">EN</a></li>
             </li>
         </ul>
     </div>

@@ -11,6 +11,7 @@ urlpatterns = [
     re_path(r'^subscriptions$', views.show_subscriptions, name='subscriptions'),
     re_path(r'^subscriptions/create/(?P<car>[0-9]+)$', views.create_subscription, name='create-subscriptions'),
     re_path(r'^subscriptions/delete/(?P<car>[0-9]+)$', views.delete_subscription, name='delete-subscriptions'),
+    re_path(r'^comments/(?P<car>[0-9]+)$', views.view_comments, name='view-comments'),
     re_path(r'^profile', views.profile, name='profile'),
     re_path(r'^cars', views.CarsList.as_view(), name='all-cars'),
     re_path(r'^test$', views.car_view, name='test-cars'),
