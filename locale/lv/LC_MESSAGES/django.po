@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-18 19:46+0200\n"
+"POT-Creation-Date: 2018-01-18 23:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,7 @@ msgstr "Lietotājs"
 
 #: .\reservations\forms.py:10 .\reservations\forms.py:23
 #: .\reservations\forms.py:41
+#: .\reservations\templates\reservations\view_comments.html:7
 msgid "Car"
 msgstr "Mašīna"
 
@@ -80,7 +81,7 @@ msgid "Password"
 msgstr "Nomainīt paroli"
 
 #: .\reservations\templates\reservations\base.html:15
-#: .\reservations\templates\reservations\view_registrations.html:5
+#: .\reservations\templates\reservations\view_registrations.html:7
 msgid "Registrations"
 msgstr "Reģistrācijas"
 
@@ -92,19 +93,19 @@ msgstr "Jauna reģistrācija"
 msgid "Subscriptions"
 msgstr "Abonētie"
 
-#: .\reservations\templates\reservations\base.html:19
+#: .\reservations\templates\reservations\base.html:20
 msgid "Account"
 msgstr "Profils"
 
-#: .\reservations\templates\reservations\base.html:24
+#: .\reservations\templates\reservations\base.html:25
 msgid "Information"
 msgstr "Informācija"
 
-#: .\reservations\templates\reservations\base.html:27
+#: .\reservations\templates\reservations\base.html:28
 msgid "Change password"
 msgstr "Nomainīt paroli"
 
-#: .\reservations\templates\reservations\base.html:31
+#: .\reservations\templates\reservations\base.html:32
 msgid "Logout"
 msgstr "Iziet"
 
@@ -135,13 +136,13 @@ msgstr "Telefons:"
 msgid "e-mail:"
 msgstr "e-pasts:"
 
-#: .\reservations\templates\reservations\subscriptions_view.html:5
+#: .\reservations\templates\reservations\subscriptions_view.html:6
 #, fuzzy
 #| msgid "Subscriptions"
 msgid "Subscribe"
 msgstr "Abonētie"
 
-#: .\reservations\templates\reservations\subscriptions_view.html:24
+#: .\reservations\templates\reservations\subscriptions_view.html:33
 msgid "Unsubscribe"
 msgstr "Atteikties"
 
@@ -165,6 +166,18 @@ msgstr "Beigu datums:"
 #: .\reservations\templates\reservations\view_cars.html:36
 msgid "Search"
 msgstr "Meklēt"
+
+#: .\reservations\templates\reservations\view_comments.html:23
+#, fuzzy
+#| msgid "Comment"
+msgid "No comments"
+msgstr "Komentārs"
+
+#: .\reservations\templates\reservations\view_registrations.html:44
+#, fuzzy
+#| msgid "New registration"
+msgid "No registrations"
+msgstr "Jauna reģistrācija"
 
 #: .\templates\login.html:7
 msgid "Your username and password didn't match. Please try again."
