@@ -1,7 +1,6 @@
 from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
-from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirect
-from django.urls import reverse_lazy, reverse
+from django.http import HttpResponse, JsonResponse
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
 from aurent import settings
@@ -9,13 +8,14 @@ from reservations.models import Registration, Car, Profile, Subscription
 from .forms import RegistrationCreateForm, RegistrationUpdateForm
 from reservations.models import Registration, Car, Profile, CarCommentary
 from .forms import RegistrationCreateForm, TechnicalForm
-import datetime, json, pytz
+import datetime, json
+import pytz
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils import timezone
-
+import datetime
 
 utc = pytz.UTC
 
