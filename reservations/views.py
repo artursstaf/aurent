@@ -7,14 +7,13 @@ from reservations.models import Registration, Car, Profile, Subscription
 from .forms import RegistrationCreateForm, RegistrationUpdateForm
 from reservations.models import Registration, Car, Profile, CarCommentary
 from .forms import RegistrationCreateForm, TechnicalForm
-import datetime, json
-import pytz
+import datetime, json, pytz
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils import timezone
-import datetime
+from django.utils.translation import activate
 
 utc = pytz.UTC
 

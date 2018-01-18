@@ -25,13 +25,10 @@ from django.conf.urls.static import static
 
 urlpatterns = []
 urlpatterns += i18n_patterns(
+    re_path(r'^$', login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='start'),
     re_path(r'^admin/', admin.site.urls),
     re_path(r'^registrations/', include('reservations.urls')),
     re_path(r'^logout/$', logout, {'next_page': 'login'}, name='logout'),
     re_path(r'^login/$', login, {'template_name': 'login.html', 'authentication_form': LoginForm}, name='login'),
     re_path(r'^password/$', change_password, name='change_password'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-#if settings.DEBUG:
-    #urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    #urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
