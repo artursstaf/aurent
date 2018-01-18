@@ -4,7 +4,6 @@ from django.http import HttpResponse, JsonResponse, Http404, HttpResponseRedirec
 from django.urls import reverse_lazy, reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import DeleteView, UpdateView, CreateView, ListView
-from post_office import mail
 from aurent import settings
 from reservations.models import Registration, Car, Profile, Subscription
 from .forms import RegistrationCreateForm, RegistrationUpdateForm
@@ -16,7 +15,7 @@ from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from django.utils.translation import activate
+
 
 utc = pytz.UTC
 
