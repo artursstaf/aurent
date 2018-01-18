@@ -137,8 +137,6 @@ msgid "e-mail:"
 msgstr "e-pasts:"
 
 #: .\reservations\templates\reservations\subscriptions_view.html:6
-#, fuzzy
-#| msgid "Subscriptions"
 msgid "Subscribe"
 msgstr "Abonētie"
 
@@ -168,16 +166,12 @@ msgid "Search"
 msgstr "Meklēt"
 
 #: .\reservations\templates\reservations\view_comments.html:23
-#, fuzzy
-#| msgid "Comment"
 msgid "No comments"
-msgstr "Komentārs"
+msgstr "Nav komentāru"
 
 #: .\reservations\templates\reservations\view_registrations.html:44
-#, fuzzy
-#| msgid "New registration"
 msgid "No registrations"
-msgstr "Jauna reģistrācija"
+msgstr "Nav reģistrāciju"
 
 #: .\templates\login.html:7
 msgid "Your username and password didn't match. Please try again."
