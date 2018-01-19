@@ -31,9 +31,9 @@ class TechnicalForm(forms.ModelForm):
 
 class LoginForm(AuthenticationForm):
     username = forms.CharField(label=_("Username"), max_length=30,
-                               widget=forms.TextInput(attrs={'class': 'form-control', 'name': 'username'}))
+                               widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(label=_("Password"), max_length=30,
-                               widget=forms.PasswordInput(attrs={'class': 'form-control', 'name': 'password'}))
+                               widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
 
 class RegistrationUpdateForm(forms.ModelForm):
