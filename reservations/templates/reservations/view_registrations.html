@@ -7,7 +7,7 @@
                 <h3 class=".panel-title">{% trans "Registrations" %}</h3>
                 <div class="list-group">
                     {% for registration in all_registrations %}
-                        <a href="{% url 'reservations:update-registration' registration.id %}" class="list-group-item">
+                        <div class="list-group-item">
                             {{ registration.car.brand }} {{ registration.car.name }} {{ registration.car.year }} {{ registration.car.type }} {{ registration.car.reg_number }}|
                             From:
                             {{ registration.start_time.day }}/{{ registration.start_time.month }}/{{ registration.start_time.year }}|
@@ -21,7 +21,8 @@
                                     <span class="glyphicon glyphicon-list-alt"></span>
                                 </button>
                             </form>
-                            <form action="{% url 'reservations:technical-update' registration.car.id %}" method="post"
+                            <form action="{% url 'reservations:technical-update' registration.car.id %}"
+                                  method="post"
                                   style="display:inline-block;">
                                 {% csrf_token %}
                                 <input type="hidden" name="user" value="{{ registration.car.id }}"/>
@@ -29,7 +30,11 @@
                                     <span class="glyphicon glyphicon-wrench"></span>
                                 </button>
                             </form>
-                            <form action="{% url 'reservations:delete-registration' registration.id %}" method="post"
+                            <a href="{% url 'reservations:update-registration' registration.id %}" class="btn btn-default">
+                                 <span class="glyphicon glyphicon-cog"></span>
+                            </a>
+                            <form action="{% url 'reservations:delete-registration' registration.id %}"
+                                  method="post"
                                   style="display:inline-block;">
                                 {% csrf_token %}
                                 <input type="hidden" name="registration_id" value="{{ registration.id }}"/>
@@ -37,7 +42,7 @@
                                     <span class="glyphicon glyphicon-trash"></span>
                                 </button>
                             </form>
-                        </a>
+                        </div>
                     {% endfor %}
                 </div>
             {% else %}

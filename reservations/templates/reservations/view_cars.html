@@ -20,9 +20,10 @@
                 }
                 for (var i = 0, len = car_list.length; i < len; i++) {
                     var x = document.createElement("p");
-                    x.innerHTML = "<a href=\"" + "create/" + car_list[i].id +"/" + document.getElementById("start_date").value + "/" + document.getElementById("end_date").value + "\" class=\"list-group-item\">" + car_list[i].brand + " " + car_list[i].name + " " + car_list[i].year + " " + car_list[i].type + " " + car_list[i].reg_number + "<form action=\""+ "comments/" + car_list[i].id +"\" method=\"post\"style=\"display:inline-block;\">{% csrf_token %} <input type=\"hidden\" name=\"user\" value=\""+ car_list[i].id +"\"/> <button type=\"submit\" class=\"btn btn-default btn-sm\"> <span class=\"glyphicon glyphicon-list-alt\"></span> </button> </form>" + "</a>";
+                    x.innerHTML = "<div class=\"list-group-item\">" + car_list[i].brand + " " + car_list[i].name + " " + car_list[i].year + " " + car_list[i].type + " " + car_list[i].reg_number + "<form action=\""+ "comments/" + car_list[i].id +"\" method=\"post\"style=\"display:inline-block;\">{% csrf_token %} <input type=\"hidden\" name=\"user\" value=\""+ car_list[i].id +"\"/> <button type=\"submit\" class=\"btn btn-default btn-sm\"> <span class=\"glyphicon glyphicon-list-alt\"></span> </button> </form>" + "<a class=\"btn btn-default\" href=\""+ "create/" + car_list[i].id +"/" + document.getElementById("start_date").value + "/" + document.getElementById("end_date").value +"\">  <span class=\"glyphicon glyphicon-ok-circle\"></span> </form>" +"</div>";
                     document.getElementById("car_list").appendChild(x);
                 }
+
             });
         }
     </script>

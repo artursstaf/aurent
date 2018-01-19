@@ -6,7 +6,7 @@
             <h3 class=".panel-title">{% trans "Subscribe" %}</h3>
             <div class="list-group">
                 {% for car in free_cars %}
-                    <a href="" class="list-group-item">
+                    <div  class="list-group-item">
                         {{ car.brand }} {{ car.name }} {{ car.year }} {{ car.type }} {{ car.reg_number }}
                         <form action="{% url 'reservations:view-comments' car.id %}" method="post"
                               style="display:inline-block;">
@@ -25,7 +25,7 @@
                                 <span class="glyphicon glyphicon-check "></span>
                             </button>
                         </form>
-                    </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -33,7 +33,7 @@
             <h3 class=".panel-title">{% trans "Unsubscribe" %}</h3>
             <div class="list-group">
                 {% for car in subscribed_cars %}
-                    <a href="" class="list-group-item">
+                    <div class="list-group-item">
                         {{ car.brand }} {{ car.name }} {{ car.year }} {{ car.type }} {{ car.reg_number }}
                         <form action="{% url 'reservations:view-comments' car.id %}" method="post"
                               style="display:inline-block;">
@@ -51,7 +51,7 @@
                                 <span class="glyphicon glyphicon-remove-circle "></span>
                             </button>
                         </form>
-                    </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
